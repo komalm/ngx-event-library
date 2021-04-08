@@ -1,0 +1,41 @@
+<div>
+    <div class="d-flex sb-bg-color-gray-0 w-100">
+        <img class="w-30 coverImg" *ngIf="eventDetailItem?.posterImage" src="{{eventDetailItem?.posterImage}}" />
+        <img class="w-30 coverImg" *ngIf="!eventDetailItem?.posterImage" src="./assets/images/eventcover.jpg" />
+
+
+        <div class="ml-20">
+            <h2 class="fs-1.3">{{eventDetailItem?.name}}</h2>
+            <!-- <span>{{'by' | translate}} {{eventDetailItem?.owner}}</span> -->
+
+            <div class="mt-12" *ngIf="eStart">
+                <div>
+                    <i class="fa fa-calendar fs-1"></i> <span class="fs-0-92"> &nbsp; {{eStart}} - {{eEnd}} ({{timezoneshort}})</span>
+                </div>
+
+                <div *ngIf="isOwner">
+                    <button type="button" class="sb-btn sb-btn-outline-primary sb-btn-normal ripple mt-20 mr-12 w-30" (click)="upate(eventDetailItem?.identifier, eventDetailItem?.versionKey);">{{'edit' | translate}}</button>
+                    <button type="button" class="sb-btn sb-btn-outline-error sb-btn-normal ripple mt-10 mr-12 w-30" (click)="retireEvent(eventDetailItem?.identifier);">{{'retire' | translate}}</button>
+
+                    <!-- <button type="button" class="sb-btn sb-btn-primary sb-btn-normal mt-20 mr-12" (click)="upate(eventDetailItem.identifier);">{{'edit' | translate}}</button> -->
+                    <!-- <button type="button" class="sb-btn sb-btn-primary sb-btn-normal  mt-10 mr-12" (click)="retireEvent(eventDetailItem.identifier);">{{'retire' | translate}}</button> -->
+                    <!-- <button type="button" *ngIf="!isEnrolled" class="sb-btn sb-btn-primary sb-btn-normal mt-20 ml-auto" (click)="enrollToEvent('enroll');">Enroll</button>
+                    <button type="button" *ngIf="isEnrolled" class="sb-btn sb-btn-primary sb-btn-normal mt-20 ml-auto" (click)="enrollToEvent('unenroll');">Unenroll</button> -->
+
+                </div>
+            </div>
+            <!-- <button type="button" *ngIf="!isEnrolled" class="sb-btn sb-btn-primary sb-btn-normal mt-20 ml-auto" (click)="enrollToEvent('enroll');">Enroll</button>
+            <button type="button" *ngIf="isEnrolled" class="sb-btn sb-btn-primary sb-btn-normal mt-20 ml-auto" (click)="enrollToEvent('unenroll');">Unenroll</button> -->
+        </div>
+        <div *ngIf="eventDetailItem?.eventType == 'Online'" class="sb-label-status sb-label-status-success ml-auto mr-20 p-12 mt-10">
+            <span class="sb-label-status-indicator sb-label-status-indicator-success"></span><span class="text-capitalize ">{{eventDetailItem?.eventType}}</span>
+        </div>
+        <div *ngIf="eventDetailItem?.eventType == 'Offline'" class="sb-label-status sb-label-status-error ml-auto mr-20 p-12 mt-10">
+            <span class="sb-label-status-indicator sb-label-status-indicator-error"></span><span class="text-capitalize ">{{eventDetailItem?.eventType}}</span>
+        </div>
+        <div *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb-label-status sb-label-primary-100 ml-auto mr-20 p-12 mt-10">
+            <span class="sb-label-status-indicator sb-label-status-indicator-primary"></span><span class="text-capitalize ">{{eventDetailItem?.eventType}}</span>
+        </div>
+
+    </div>
+</div>

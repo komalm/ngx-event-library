@@ -1,0 +1,75 @@
+<div class="p-40">
+
+    <h1 class="mt-20 mb-20">{{'createnewevent' | translate}}</h1>
+    <ng-container *ngIf="isNew;then New; else Edit">
+    </ng-container>
+    <ng-template #New>
+        <sb-dynamic-form *ngIf="formFieldProperties" class="label-1" [config]="formFieldProperties" (valueChanges)="valueChanges($event)">
+        </sb-dynamic-form>
+    </ng-template>
+    <ng-template #Edit>
+        <sb-dynamic-form *ngIf="formFieldData" class="label-1" [config]="formFieldData" (valueChanges)="valueChanges($event)">
+        </sb-dynamic-form>
+    </ng-template>
+
+    <!-- <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
+        <div *ngFor="let field of customFieldsForm" class="d-flex flex-jc-space-between">
+            <div class="mb-12 w-100">
+                <div class="mb-5 fs-0-785">{{field.code}}</div>
+                
+                <input *ngIf="field.dataType == 'text'" class="fsmall sb-textbox text-uppercase py-8 w-85 px-16" formControlName="field.code" type="text" id="meeting-time" name="meeting-time" min="{{todayDate}}">
+                <input *ngIf="field.dataType =='time'" class="fsmall sb-textbox text-uppercase py-8 px-16" formControlName="field.code" type="time" id="meeting-time" name="meeting-time">
+            </div>
+        </div>
+        <input type="submit" value="save"/>
+    </form> -->
+    <form class="ui form" [formGroup]="customFields">
+        <div class="form-group">
+            <div class="d-flex flex-jc-space-between">
+                <div class="mb-12 w-100">
+                    <label class="mb-5 fs-0-785">{{'startdatetime' | translate}} ({{timezoneshort}})
+                    </label>
+                    <div class="field">
+                        <input class="fsmall sb-textbox text-uppercase py-8 w-75 px-16" formControlName="startDate" type="date" id="meeting-time" name="meeting-time" min="{{todayDate}}">
+                        <input class="fsmall sb-textbox text-uppercase py-8 px-16 w-17-5" formControlName="startTime" type="time" id="meeting-time" name="meeting-time">
+
+                    </div>
+                </div>
+                <div class="mb-12 w-100 ml-16">
+                    <label class="mb-5 fs-0-785">{{'enddatetime' | translate}} ({{timezoneshort}})
+                    </label>
+                    <div class="field">
+                        <input class="fsmall sb-textbox text-uppercase py-8 w-75 px-16" formControlName="endDate" type="date" id="meeting-time" name="meeting-time" min="{{todayDate}}">
+                        <input class="fsmall sb-textbox text-uppercase py-8 px-16 w-17-5" formControlName="endTime" type="time" id="meeting-time" name="meeting-time" min={{startTime}}>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-jc-space-between">
+                <div class="mb-12 w-100">
+                    <label class="mb-5 fs-0-785">{{'registrationStartDate' | translate}} ({{timezoneshort}})
+                    </label>
+                    <div class="field">
+                        <input class="fsmall sb-textbox text-uppercase py-8 w-96 px-16" formControlName="registrationStartDate" type="date" id="meeting-time" name="meeting-time" min="{{todayDate}}">
+                    </div>
+                </div>
+                <div class="mb-12 w-100 ml-16">
+                    <label class="mb-5 fs-0-785">{{'registrationEndDate' | translate}} ({{timezoneshort}})
+                    </label>
+                    <div class="field">
+                        <input class="fsmall sb-textbox text-uppercase py-8 w-96 px-16" formControlName="registrationEndDate" type="date" id="meeting-time" name="meeting-time" min="{{todayDate}}">
+
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="d-flex my-24 flex-jc-flex-end">
+        <button type="button" class="sb-btn sb-btn-outline-primary sb-btn-md ripple" (click)="cancel();">{{'cancel' | translate}}</button>
+
+        <button type="button" class="sb-btn sb-btn-success sb-btn-md ripple ml-12" (click)="postData(true);">{{'saveToPublish' | translate}}</button>
+        <button type="button" class="sb-btn sb-btn-primary sb-btn-md ripple ml-12" (click)="postData(false);">{{'saveAsDraft' | translate}}</button>
+
+    </div>
+</div>

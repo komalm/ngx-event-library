@@ -1,0 +1,99 @@
+<div class="">
+    <div>
+        <p *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:300}} <a
+                *ngIf="eventDetailItem?.description.length > 300" (click)="truncateData(true)">{{'SeeMore' | translate}}
+
+            </a> </p>
+        <p *ngIf="isTruncate">{{eventDetailItem?.description}} <a (click)="truncateData(false)">{{'LessMore' |
+                translate}}</a> </p>
+        
+
+        <div>
+            <table class="w-100 fs-0-92" *ngIf="eventDetailItem?.eventType != 'Online'">
+                <tr *ngIf="eventDetailItem?.venue">
+                    <td class="w-17-5"> <span class="fs-0-92 font-weight-bold"> {{'venue' | translate}} </span>
+                    </td>
+                    <td class="w-80"> <span class="mr-12">{{eventDetailItem?.venue.name}}</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.registrationStartDate">
+                    <td class="w-17-5"> <span class="fs-0-92 font-weight-bold">
+                            {{'registrationStartDate' | translate}} </span></td>
+                    <td class="w-80"> <span class="mr-12">{{eventDetailItem?.registrationStartDate}}&nbsp;({{timezoneshort}})</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.registrationEndDate">
+                    <td class="w-17-5"> <span class="fs-0-92 font-weight-bold">
+                            {{'registrationEndDate' | translate}} </span></td>
+                    <td class="w-80"><span class="mr-12">{{eventDetailItem?.registrationEndDate}}&nbsp;({{timezoneshort}})</span></td>
+                </tr>
+            </table>
+
+            <table class="w-100" *ngIf="eventDetailItem?.eventType != 'Offline'">
+                <tr *ngIf="eventDetailItem?.onlineProvider">
+                    <td class="w-17-5"> <span class="fs-0-92 font-weight-bold"> {{'onlineproviderdata' |
+                            translate}} </span></td>
+                    <td class="w-80"><span class="fs-0-92 mr-12"> {{
+                            eventDetailItem?.onlineProvider}}</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.code">
+                    <td class="w-17-5"> <span *ngIf="eventDetailItem?.code" class="fs-0-92 font-weight-bold"> {{'code' |
+                            translate}}
+                        </span></td>
+                    <td class="w-80"><span class="fs-0-92 mr-12">
+                            {{eventDetailItem?.code}}</span></td>
+                </tr>
+
+
+            </table>
+
+            <table class="w-100">
+                <tr *ngIf="eventDetailItem?.language">
+                    <td class="w-17-5"><span class="fs-0-92 font-weight-bold"> {{'language' | translate}}
+                        </span></td>
+                    <td class="w-80"><span class="fs-0-92 mr-12">
+                            {{eventDetailItem?.language}}</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.keyword">
+                    <td class="w-17-5"><span class="fs-0-92 font-weight-bold"> {{'keyword' | translate}}
+                        </span></td>
+                    <td class="w-80"><span class="fs-0-92 mr-12">
+                            {{eventDetailItem?.keyword}}</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.createdFor">
+                    <td class="w-17-5"> <span class="fs-0-92 font-weight-bold"> {{'createdFor' | translate}}
+                        </span> </td>
+                    <td class="w-80"><span class="fs-0-92 mr-12">
+                            {{eventDetailItem?.createdFor}}</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.source">
+                    <td class="w-17-5"> <span class="fs-0-92 font-weight-bold"> {{'source' | translate}}
+                        </span></td>
+                    <td class="w-80"><span class="fs-0-92 mr-12">
+                            {{eventDetailItem?.source}}</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.audience">
+                    <td class="w-17-5"> <span class="fs-0-92 font-weight-bold w-90"> {{'audience' | translate}}
+                        </span></td>
+                    <td class="w-80"><span class="fs-0-92 mr-12">
+                            {{eventDetailItem?.audience[0]}}</span></td>
+                </tr>
+
+                <tr *ngIf="eventDetailItem?.collaborators">
+                    <td class="w-17-5"><span class="fs-0-92 font-weight-bold"> {{'collaborators' |
+                            translate}} </span></td>
+                    <td class="w-80"><span class="fs-0-92 mr-12"
+                            *ngFor="let collaborator of eventDetailItem?.collaborators;let i = index"> {{i + 1}}.
+                            {{collaborator.name}}</span></td>
+                </tr>
+
+
+            </table>
+
+
+        </div>

@@ -1,0 +1,11 @@
+{
+  "name": "@tekdi/ngtek-event-library",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  },
+  "devDependencies": {
+    "@angular/cli": "^11.1.4"
+  }
+}

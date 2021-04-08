@@ -1,0 +1,2 @@
+<sb-event-create  *ngIf="!isDetail" [formFieldProperties]="formFieldProperties" [userId]="userId" (closeSaveForm)="cancel($event)" (navAfterSave)="navAfterSave($event);"></sb-event-create>
+<sb-event-detail *ngIf="isDetail" [eventDetailItem]="eventItem" [userData]="userId" [canUnenroll]="true"></sb-event-detail>

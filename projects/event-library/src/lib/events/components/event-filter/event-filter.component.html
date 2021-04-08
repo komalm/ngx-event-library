@@ -1,0 +1,31 @@
+<div class="sb-prominent-filter sb-bg-header-blue">
+    <div class="ui container pt-10 pb-20">
+        <div class="d-flex flex-w-wrap flex-jc-space-between flex-ai-center">
+            <div class="sb-search-box  search-container small no-btn">
+                <div class="input-div relative">
+                    <i class="search icon"></i>
+                    <input class="sb-search-input " [(ngModel)]="searchQuery" type="text" (keyup.enter)="onQueryEnter();" placeholder="Search Event" />
+                </div>
+                <button class="sb-btn sb-btn-normal">
+            {{'search' | translate}}
+          </button>
+            </div>
+
+            <div class="fs-0-785 cursor-pointer" (click)="showfilter()">
+                {{'changefilters' | translate}}
+                <i *ngIf="isFilterShow" class="caret up icon"></i>
+                <i *ngIf="!isFilterShow" class="caret down icon"></i>
+            </div>
+        </div>
+        <div class="library-filter search-container pt-16" *ngIf="isFilterShow">
+            <hr class="mb-20">
+            <ng-container *ngIf="filterConfig">
+                <sb-dynamic-form [config]="filterConfig" (initialize)="outputData($event)" (statusChanges)="onStatusChanges($event)" (valueChanges)="valueChanges($event)"></sb-dynamic-form>
+            </ng-container>
+            <div class="d-flex flex-as-center pt-10 sb-btn-cover flex-jc-space-end">
+                <button type="button" class="sb-btn sb-btn-normal sb-btn-outline-primary ml-5" (click)="resetFilter();">{{'reset' | translate}}</button>
+                <button type="button" class="sb-btn sb-btn-normal sb-btn-primary ml-15" (click)="applyFilter();">{{'apply' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

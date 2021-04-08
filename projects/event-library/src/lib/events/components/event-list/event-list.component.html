@@ -1,0 +1,43 @@
+<div class=" sbt-page-content-area">
+    <div class="card-container">
+        <div class="masonry-grid " *ngIf="list">
+            <div class="masonry-item"  *ngFor="let event of list | paginate: { itemsPerPage: paginateLimit, currentPage: p }">
+                <!-- <div class="sb-card" (click)="onEventWrapper(event?.identifier);navToEventDetail(event)" tabindex="0"> -->
+
+                <div class="sb-card" (click)="navToEventDetail(event)" tabindex="0">
+                    <div class="sb-card-body">
+                        <div class="sb-card-metas">
+                            <div class="sb-card-image mr-16">
+                                <img src="./assets/images/eventcover.jpg">
+                            </div>
+                            <div class="sb-card-meta course">
+                                <div *ngIf="event?.audience" class="sb-card-meta-item ellipsis mt-4">
+                                    {{'audience' | translate}}: {{event?.audience}}
+                                </div>
+                                <div *ngIf="event?.onlineProvider" class="sb-card-meta-item ellipsis mt-4">
+                                    {{'eventtype' | translate}}: {{event?.onlineProvider}}
+                                </div>
+                                <div *ngIf="event?.status" class="sb-card-meta-item ellipsis mt-4">
+                                    {{'Status' | translate}}: {{event?.status}}
+                                </div>
+                                <div *ngIf="event?.startDate" class="sb-card-meta-item ellipsis mt-4">
+                                    {{'startdate' | translate}}: {{event?.startDate}}
+                                </div>
+                            </div>
+                        </div>
+                        <h4 *ngIf="event?.name" class="sb-card-title">
+                            {{event?.name}}
+                        </h4>
+                        <!-- <div *ngIf="event?.status" class="sb-card-org ellipsis ">
+                {{event?.status}} 
+              </div> -->
+                        <div class="sb-label-status sb-label-status-success ml-auto mr-15 p-10 mt-8">
+                            <span class="sb-label-status-indicator sb-label-status-indicator-success"></span> {{event?.eventType}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+              <pagination-controls (pageChange)="p = $event"  *ngIf="list"></pagination-controls>        
+    </div>
+</div>

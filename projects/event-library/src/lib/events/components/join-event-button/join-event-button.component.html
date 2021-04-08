@@ -1,0 +1,25 @@
+<div class="d-flex mt-20">
+    <div class="wl-30"></div>
+    
+    <div  class="w-50 d-flex  join-btn my-12">
+        <button *ngIf="isUserAbleToJoin && isEnrolled" type="button " class="sb-custom-btn sb-btn sb-btn-secondary w-50 sb-btn-normal mr-12 ml-auto" (click)="openProviderLink(eventDetailItem?.onlineProviderData); ">{{'join' | translate}}</button>
+        <button type="button" *ngIf="!isEnrolled" class="sb-btn w-50 sb-btn-primary  sb-btn-normal" (click)="enrollToEvent('enroll');">{{'enroll' | translate}}</button>
+        <button type="button" *ngIf="isEnrolled && canUnenroll" class="w-50 sb-btn sb-btn-primary  sb-btn-normal" (click)="enrollToEvent('unenroll');">{{'unenroll' | translate}}</button>
+
+    </div>
+
+
+    <!-- <table>
+        <tr>
+            <td>
+                <button type="button " class="sb-custom-btn sb-btn sb-btn-secondary  sb-btn-normal w-100  mt-20 ml-auto" (click)="openProviderLink(eventDetailItem?.onlineProviderData); ">{{'join' | translate}}</button>
+
+            </td>
+            <td *ngIf="canUnenroll">
+                <button type="button" *ngIf="!isEnrolled" class="sb-btn sb-btn-primary  w-100 sb-btn-normal" (click)="enrollToEvent('enroll');">{{'enroll' | translate}}</button>
+                <button type="button" *ngIf="isEnrolled && canUnenroll" class="sb-btn w-100 sb-btn-primary  sb-btn-normal" (click)="enrollToEvent('unenroll');">{{'unenroll' | translate}}</button>
+
+            </td>
+        </tr>
+    </table> -->
+</div>
