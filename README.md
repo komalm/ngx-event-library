@@ -1,27 +1,405 @@
-# EventLibrary
+# Getting Started
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
+##### Event Library powered by angular. These componentsare designed to be used in
 
-## Development server
+##### mobile and web portals to drive reusability, maintainabilityhence reducing the
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+##### redundant development effort significantly.
 
-## Code scaffolding
+## Step 1: Install the package
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+npm install @tekdi/ngtek-event-library
+```
+## Step 2: Import the modules and components
 
-## Build
+##### Import the NgModule in your app app.module.ts file:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+import { EventLibraryModule } from '@tekdi/ngtek-event-library'; <---
+import * as configData from '../environments/urlConfig';<- - -
 
-## Running unit tests
+@NgModule({
+declarations: [
+AppComponent
+],
+imports: [
+.....
+...
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+EventLibraryModule.forChild(configData), <---
+....
+],
+providers: [ ]
 
-## Running end-to-end tests
+})
+export class AppModule { }
+```
+**urlConfig.ts** file in your project root path and addyour api url with respective Key
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+export const urlConfig = {
+detail : "/api/event/v4/read/",
+list : "assets/api/eventlist.json",
+create: "/api/event/v4/create",
+update: "/api/event/v4/update",
+formConfig : "assets/api/event-create.json",
+ernrolEvents : "assets/api/enroll-list.json",
+enroll: "/v1/event/enroll",
+retire : "/private/event/v4/retire",
+publish: "/event/v4/publish"
+};
+```
+## Step 3: Include the sb-styles and assets in angular.json
 
-## Further help
+##### Below mentioned lines add in your angular.json file
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+"assets" : [
+{
+"glob": "**/*",
+"input": "./node_modules/@tekdi/ngtek-event-library/assets/",
+"output": "/assets/"
+}
+]
+
+"styles": [
+...
+...
+
+"./node_modules/@tekdi/ngtek-event-library/assets/styles/styles.scss",
+"node_modules/izitoast/dist/css/iziToast.min.css"
+
+],
+"scripts": [
+"node_modules/izitoast/dist/js/iziToast.min.js"
+]
+```
+## Available components
+
+##### Feature Notes Selector Codes
+
+Event List Use for show card
+list
+
+```
+sb-event-lis
+t
+
+<sb-event-list
+[list]="eventList"
+></sb-event-list>
+```
+Event Cover Use for show event
+cover data
+
+```
+sb-cover-eve
+nt-detail
+
+<sb-cover-event-detail
+[eventDetailItem]="eventItem
+"
+(retireEventId)="retire($eve
+nt)"
+></sb-cover-event-detail>
+```
+Event Join
+Button
+
+```
+Use for show event
+join and enroll
+button
+```
+```
+sb-join-even
+t-button
+```
+```
+<sb-join-event-button
+[eventDetailItem]="eventItem
+"></sb-join-event-button>
+```
+Event Advance
+detail
+
+```
+Use for show more
+data about event
+```
+```
+sb-advance-e
+vent-detail
+```
+```
+<sb-advance-event-detail
+[eventDetailItem]="eventItem
+"></sb-advance-event-detail>
+```
+Event Create Use for show event
+create form
+
+```
+sb-event-cre
+ate
+```
+```
+<sb-event-create></sb-event-
+create>
+```
+## Available Services
+
+
+#### 1. Event List Service:
+
+##### Inject service in the component where you have touse:
+
+```
+import { EventListService} from '@tekdi/ngtek-event-library';
+```
+##### Method Description
+
+##### getEventList() This method will Provide a list of events
+
+#### 2. Event DetailService:
+
+##### Inject service in the component where you have touse:
+
+```
+import { EventDetailService} from '@tekdi/ngtek-event-library';
+```
+##### Method Description
+
+##### getEvent(identifier) Pass list api config and event Identifier to
+
+##### getEventmethod and it will Provide a list
+
+##### of events with given filters
+
+#### 3. Event Create Service:
+
+##### Inject service in the component where you have touse:
+
+```
+import { EventCreateService} from '@tekdi/ngtek-event-library';
+```
+
+##### Method Description
+
+##### getEventFormConfig() function is provide event form
+
+##### configurations
+
+##### createEvent(formData) Pass formData ({Key : value}) to the
+
+##### createEventmethod and it will create a
+
+##### new event and return success/error
+
+##### response.
+
+##### updateEvent(formData) Pass formData ({Key : value}) to the
+
+##### updateEventmethod and it will create a
+
+##### new event and return success/error
+
+##### response.
+
+### 4.TimezoneService:
+
+```
+Import {TimezoneCal }from '@tekdi/ngtek-event-library';
+```
+##### Method Description
+
+##### calcTime(date, Time) Pass date and GMT time (Eg:
+
+##### 23:12:04+5.30) format it will return current
+
+##### country/city location in all over word
+
+##### timeZoneAbbreviated Function return the timezone code (eg:
+
+##### IST)
+
+##### getTimeOffset() Return time offset (eg: 5.30)
+
+## 5.Toast Message Service:
+
+
+```
+Import { SbToastService} from '@tekdi/ngtek-event-library';
+```
+##### Method Description
+
+```
+showIziToastMsg(message: string, type:
+string):
+```
+##### Show toast messages
+
+##### Message - Text display to user
+
+##### Type - error/success/warning /info
+
+##### destroyIzitoast() Destroy toast message
+
+### 6.Post Request Service
+
+```
+Import { DataService} from '@tekdi/ngtek-event-library';
+```
+##### Method Description
+
+```
+post(requestParam) For request post call
+```
+```
+get(requestParam) For request get call
+```
+RequestParam structure:
+
+const RequestParam = {
+
+```
+url: api-url,
+data: requestBody,
+header: { 'Content-Type' : 'application/json'}
+};
+```
+
+### 7.Event Service:
+
+##### Method Description
+
+```
+getEnrollEvents() For get enroll event list
+```
+```
+enrollToEventPost() To enroll event
+```
+## Available Properties:
+
+#### Event List
+
+```
+@Input() list: any; Event List Object
+```
+#### Event Cover
+
+```
+@Input() list: any; Event Detail Object
+```
+```
+@Output() retireEventId EventEmitter<string>
+```
+```
+@Input() userId :any; User Id
+```
+#### Event Join Button
+
+```
+@Input() eventDetailItem :any; EventEmitter<string>
+```
+```
+@Input() userId :any; User id
+```
+
+#### Event Advance Detail
+
+##### @Input() eventDetailItem :any; Event Detail Object
+
+#### Event Create
+
+##### @Input()formFieldProperties
+
+##### :any;
+
+```
+Event Form Object
+```
+##### @Input() userId :any; User Id
+
+```
+@Output() closeSaveForm EventEmitter<string>
+```
+```
+@Output() navAfterSave EventEmitter<string>
+```
+### Handle Redirections:
+
+#### 1. Event List to Event Detail Page:
+
+##### Add following line in your event list selector whereyou add the sb-event-list
+
+##### selector
+
+(eventDetailData)="navToEventDetail($event)"
+
+Eg:
+
+```
+<sb-event-list (eventDetailData)="navToEventDetail($event) " >
+</sb-event-list>
+```
+Then
+
+Go to demo-event-list.ts file and insert followingcode:
+
+
+```
+navToEventDetail(res){
+this.router.navigate(['/demo-event-detail]); //add your code here
+....
+}
+```
+#### 2. Cancel button on Event creation form
+
+##### Add following line in your event create selector whereyou add the sb-event-create
+
+##### selector
+
+(creationCancel)=" **functionName** ($event)"
+
+Eg:
+
+```
+<sb-event-create [formFieldProperties]="formFieldProperties"
+(closeSaveForm)="cancel($event)" ></sb-event-create>
+```
+Then
+
+##### Go to demo-event-create.ts file and insert followingcode:
+
+```
+functionName (){
+this.router.navigate(['/home']); //add your codehere
+}
+```
+#### 3. Save Event:
+
+##### Add following line in your event create selector whereyou add the sb-event-create
+
+##### selector
+
+(navAfterSave)=" **functionName** ($event)"
+
+
+Eg:
+
+```
+<sb-event-create ( navAfterSave )="saveData();" ></sb-event-create>
+```
+Then
+
+##### Go to demo-event-create.ts file and insert followingcode:
+
+```
+saveData (){
+//add your code here
+....
+}
+```
+
