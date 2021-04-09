@@ -76,78 +76,14 @@ publish: "/event/v4/publish"
 ]
 ```
 ## Available components
-
-##### Feature Notes Selector Codes
-
-Event List Use for show card
-list
-
-```
-sb-event-lis
-t
-
-<sb-event-list
-[list]="eventList"
-></sb-event-list>
-```
-Event Cover Use for show event
-cover data
-
-```
-sb-cover-eve
-nt-detail
-
-<sb-cover-event-detail
-[eventDetailItem]="eventItem
-"
-(retireEventId)="retire($eve
-nt)"
-></sb-cover-event-detail>
-```
-Event Join
-Button
-
-```
-Use for show event
-join and enroll
-button
-```
-```
-sb-join-even
-t-button
-```
-```
-<sb-join-event-button
-[eventDetailItem]="eventItem
-"></sb-join-event-button>
-```
-Event Advance
-detail
-
-```
-Use for show more
-data about event
-```
-```
-sb-advance-e
-vent-detail
-```
-```
-<sb-advance-event-detail
-[eventDetailItem]="eventItem
-"></sb-advance-event-detail>
-```
-Event Create Use for show event
-create form
-
-```
-sb-event-cre
-ate
-```
-```
-<sb-event-create></sb-event-
-create>
-```
+| Feature               | Description                               | Selector                | Codes                                                                                                                                                                                       |
+|-----------------------|-------------------------------------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event List            | Use for show card list                    | sb-event-list           | <sb-event-list [list]="eventList" (eventDetailData)="navToEventDetail($event) " ></sb-event-list>                                                                                           |
+| Event Cover           | Use for show event cover data             | sb-cover-event-detail   | <sb-cover-event-detail [eventDetailItem]="eventItem" (retireEventId)="retire($event)" [userData]="userId" ></sb-cover-event-detail>                                                         |
+| Event Join Button     | Use for show event join and enroll button | sb-join-event-button    | <sb-join-event-button [eventDetailItem]="eventItem" [userData]="userId"  [canUnenroll]="true" ></sb-join-event-button>                                                                      |
+| Event Advance detail  | Use for show more data about event        | sb-advance-event-detail | <sb-advance-event-detail [eventDetailItem]="eventItem"></sb-advance-event-detail>                                                                                                           |
+| Event Create          | Use for show event create form            | sb-event-create         | <sb-event-create *ngIf="!isDetail" [formFieldProperties]="formFieldProperties" [userId]="userId" (closeSaveForm)="cancel($event)" (navAfterSave)="navAfterSave($event);"></sb-event-create> |
+|                       |                                           |                         |                                                                                                                                                                                             |
 ## Available Services
 
 
@@ -158,9 +94,9 @@ create>
 ```
 import { EventListService} from '@tekdi/ngtek-event-library';
 ```
-##### Method Description
-
-##### getEventList() This method will Provide a list of events
+| Method         | Description                                |
+|----------------|--------------------------------------------|
+| getEventList() | This method will Provide a list of events  |
 
 #### 2. Event DetailService:
 
@@ -169,13 +105,9 @@ import { EventListService} from '@tekdi/ngtek-event-library';
 ```
 import { EventDetailService} from '@tekdi/ngtek-event-library';
 ```
-##### Method Description
-
-##### getEvent(identifier) Pass list api config and event Identifier to
-
-##### getEventmethod and it will Provide a list
-
-##### of events with given filters
+| Method               | Description                                                                                                          |
+|----------------------|----------------------------------------------------------------------------------------------------------------------|
+| getEvent(identifier) | Pass list api config and event Identifier to getEvent method and it will Provide a list of events with given filters |
 
 #### 3. Event Create Service:
 
@@ -185,46 +117,24 @@ import { EventDetailService} from '@tekdi/ngtek-event-library';
 import { EventCreateService} from '@tekdi/ngtek-event-library';
 ```
 
-##### Method Description
+| Method                | Description                                                                                                               |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------|
+| getEventFormConfig()  |  function is provide event form configurations                                                                            |
+| createEvent(formData) | Pass formData ({Key : value}) to the createEvent method and it will create a new event and return success/error response. |
+| updateEvent(formData) | Pass formData ({Key : value}) to the updateEvent method and it will create a new event and return success/error response. |
 
-##### getEventFormConfig() function is provide event form
 
-##### configurations
-
-##### createEvent(formData) Pass formData ({Key : value}) to the
-
-##### createEventmethod and it will create a
-
-##### new event and return success/error
-
-##### response.
-
-##### updateEvent(formData) Pass formData ({Key : value}) to the
-
-##### updateEventmethod and it will create a
-
-##### new event and return success/error
-
-##### response.
 
 ### 4.TimezoneService:
 
 ```
 Import {TimezoneCal }from '@tekdi/ngtek-event-library';
 ```
-##### Method Description
-
-##### calcTime(date, Time) Pass date and GMT time (Eg:
-
-##### 23:12:04+5.30) format it will return current
-
-##### country/city location in all over word
-
-##### timeZoneAbbreviated Function return the timezone code (eg:
-
-##### IST)
-
-##### getTimeOffset() Return time offset (eg: 5.30)
+| Method               | Description                                                                                                     |
+|----------------------|-----------------------------------------------------------------------------------------------------------------|
+| calcTime(date, Time) | Pass date and GMT time (Eg: 23:12:04+5.30) format it will return current country/city location in all over word |
+| timeZoneAbbreviated  | Function return the timezone code (eg: IST)                                                                     |
+|  getTimeOffset()     | Return time offset (eg: 5.30)                                                                                   |
 
 ## 5.Toast Message Service:
 
@@ -232,33 +142,21 @@ Import {TimezoneCal }from '@tekdi/ngtek-event-library';
 ```
 Import { SbToastService} from '@tekdi/ngtek-event-library';
 ```
-##### Method Description
-
-```
-showIziToastMsg(message: string, type:
-string):
-```
-##### Show toast messages
-
-##### Message - Text display to user
-
-##### Type - error/success/warning /info
-
-##### destroyIzitoast() Destroy toast message
+| Method                                          | Description                                                                           |
+|-------------------------------------------------|---------------------------------------------------------------------------------------|
+| showIziToastMsg(message: string, type: string): | Show toast messages Message - Text display to user Type - error/success/warning /info |
+| destroyIzitoast()                               | Destroy toast message                                                                 |
 
 ### 6.Post Request Service
 
 ```
 Import { DataService} from '@tekdi/ngtek-event-library';
 ```
-##### Method Description
+| Method             | Description           |
+|--------------------|-----------------------|
+| post(requestParam) | For request post call |
+| get(requestParam)  | For request get call  |
 
-```
-post(requestParam) For request post call
-```
-```
-get(requestParam) For request get call
-```
 RequestParam structure:
 
 const RequestParam = {
@@ -274,12 +172,11 @@ header: { 'Content-Type' : 'application/json'}
 
 ##### Method Description
 
-```
-getEnrollEvents() For get enroll event list
-```
-```
-enrollToEventPost() To enroll event
-```
+| Method              | Description               |
+|---------------------|---------------------------|
+| getEnrollEvents()   | For get enroll event list |
+| enrollToEventPost() | To enroll event           |
+
 ## Available Properties:
 
 #### Event List
