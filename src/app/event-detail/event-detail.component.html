@@ -2,3 +2,10 @@
 <sb-join-event-button [eventDetailItem]="eventItem" [userData]="userId" [canUnenroll]="true"></sb-join-event-button>
 <sb-advance-event-detail [eventDetailItem]="eventItem"></sb-advance-event-detail>
 
+<!-- Back button -->
+<div class="d-flex my-24 flex-jc-flex-end">
+      <button (click)="goBack()" class="sb-btn sb-btn-outline-primary sb-btn-md ripple">
+            Back
+      </button>
+</div>
+
