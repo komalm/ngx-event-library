@@ -11,7 +11,7 @@
     },
     "responseCode": "OK",
     "result": {
-        "content": {
+        "event": {
             "trackable": {
                 "enabled": "Yes",
                 "fixedBatch": "Yes",

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {EventListService} from '../../../projects/event-library/src/lib/events/services/event-list/event-list.service';
+import { Router } from '@angular/router';
+
+import { EventListService } from '../../../projects/event-library/src/lib/events/services/event-list/event-list.service';
 import { EventCreateService } from '../../../projects/event-library/src/lib/events/services/event-create/event-create.service';
 import { EventDetailService } from './../../../projects/event-library/src/lib/events/services/event-detail/event-detail.service';
 
 @Component({
-  selector: 'app-demo',
+  selector: 'app-demo', 
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.scss']
 })
@@ -22,7 +24,8 @@ export class DemoComponent implements OnInit {
   constructor(
     private eventListService:EventListService,
     private eventCreateService: EventCreateService,
-    private eventDetailService: EventDetailService
+    private eventDetailService: EventDetailService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -33,7 +36,7 @@ export class DemoComponent implements OnInit {
 
   /**
    * For get List of events
-   */
+   */ 
   showEventListPage(){
     this.eventListService.getEventList().subscribe((data:any)=>{
        console.log("data = ", data.result.content);
@@ -46,12 +49,16 @@ export class DemoComponent implements OnInit {
   /**
    * For subscibe click action on event card
    */
-   navToEventDetail(res){
-    this.eventItem = res;
-    this.tab = 'detail';
+   navToEventDetail(event){
+    this.router.navigate(['/play/event-detail'], {
+      queryParams: {
+        identifier: event.identifier
+      }
+    });
 
-    console.log(res);
+    console.log('Demo Component - ', event.identifier);
   }
+  
 
   Openview(view)
   {
