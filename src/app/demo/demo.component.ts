@@ -63,15 +63,26 @@ export class DemoComponent implements OnInit {
   Openview(view)
   {
     this.isLoading = true;
-    if(view == 'list' ){
-      this.tab = 'list';
-    }else if(view == 'detail'){
-      this.tab = 'detail';
-    }else{
-      this.tab = 'form';
-    }
-    this.isLoading = false;
 
+    if(view == 'list' )
+    {
+      this.tab = 'list';
+    }
+    else if(view == 'detail')
+    {
+      this.tab = 'detail';
+    }
+    else
+    {
+      // this.tab = 'form';
+      this.router.navigate(['/form'], {
+        queryParams: {
+          // identifier: event.identifier
+        }
+      });
+    }
+
+    this.isLoading = false;
   }
 
 
