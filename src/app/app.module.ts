@@ -17,6 +17,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DemoComponent } from './demo/demo.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DemoComponent } from './demo/demo.component';
     UserListComponent,
     UserDetailComponent,
     UserFomComponent,
-    DemoComponent
+    DemoComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,
