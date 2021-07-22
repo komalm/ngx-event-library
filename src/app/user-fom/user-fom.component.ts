@@ -32,7 +32,7 @@ export class UserFomComponent implements OnInit {
   }
   
   cancel(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/demo']);
   }
 
   navAfterSave(res){
