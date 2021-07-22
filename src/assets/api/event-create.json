@@ -51,7 +51,7 @@
                         "label": "Event Type",
                         "description": "Type of the event",
                         "editable": true,
-                        "default": "Online",
+                        "default": "",
                         "placeholder": "Select Event Type",
                         "inputType": "select",
                         "required": false,
