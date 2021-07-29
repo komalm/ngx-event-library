@@ -46,6 +46,7 @@ export class EventCreateComponent implements OnInit {
   offset = this.timezoneCal.getTimeOffset();
   constFormFieldProperties: any;
   flag: boolean = true;
+  eventCalender:any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventCreateService: EventCreateService,
@@ -89,8 +90,14 @@ export class EventCreateComponent implements OnInit {
         this.formFieldProperties = data.result['form'].data.fields;
       });
 
-      this.eventDetailService.getEvent(this.queryParams.identifier).subscribe((data: any) => {
+      
+
+
+
+      this.eventDetailService.getEvent().subscribe((data: any) => {
+        
         this.queryParams = data.result.event;
+        console.log('this.queryParams = ', this.queryParams);
       },
         (err: any) => {
           console.log('err = ', err);
@@ -132,7 +139,7 @@ export class EventCreateComponent implements OnInit {
 
     this.formValues = editValues;
     this.formFieldData = this.formFieldProperties;
-    console.log(this.formFieldData);
+    console.log("formfielddata",this.formFieldData);
     console.log(this.formValues);
 
     this.customFields = this.formBuilder.group({
@@ -298,4 +305,3 @@ export class EventCreateComponent implements OnInit {
 
 
 }
-

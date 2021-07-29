@@ -17,13 +17,16 @@ export class EventDetailService {
   /**
    * For get event detail 
    */
-  getEvent(identifier) {
+  
+  getEvent() {
     const req = {
-      url: this.userConfigService.getConfigUrl().detail  + identifier
+      url: this.userConfigService.getConfigUrl().eventDetailApi
     };
-
     return this.dataService.get(req);
   }
+
+
+ 
 
 
   /**
