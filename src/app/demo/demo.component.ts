@@ -1,8 +1,14 @@
+
 import {
   Component, OnInit,
   ChangeDetectionStrategy,
   
 } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+
 import { EventListService } from '../../../projects/event-library/src/lib/events/services/event-list/event-list.service';
 import { EventCreateService } from '../../../projects/event-library/src/lib/events/services/event-create/event-create.service';
 import { EventDetailService } from './../../../projects/event-library/src/lib/events/services/event-detail/event-detail.service';
@@ -43,8 +49,10 @@ const colors: any = {
 
 
 @Component({
+
   selector: 'app-demo',
   changeDetection: ChangeDetectionStrategy.OnPush,
+
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.scss']
 })
@@ -66,9 +74,11 @@ export class DemoComponent implements OnInit {
     private eventListService: EventListService,
     private eventCreateService: EventCreateService,
     private eventDetailService: EventDetailService,
+
   
     private router: Router,
     
+
   ) { }
 
 
@@ -90,10 +100,14 @@ export class DemoComponent implements OnInit {
 
   /**
    * For get List of events
+
    */
-  showEventListPage() {
-    this.eventListService.getEventList().subscribe((data: any) => {
-      console.log("data = ", data.result.content);
+ 
+
+  showEventListPage(){
+    this.eventListService.getEventList().subscribe((data:any)=>{
+       console.log("data = ", data.result.content);
+
       this.eventList = data.result.content;
       this.isLoading = false;
 
@@ -103,15 +117,24 @@ export class DemoComponent implements OnInit {
   /**
    * For subscibe click action on event card
    */
-  navToEventDetail(res) {
-    this.eventItem = res;
-    this.tab = 'detail';
 
-    console.log(res);
+  
+
+   navToEventDetail(event){
+    this.router.navigate(['/play/event-detail'], {
+      queryParams: {
+        identifier: event.identifier
+      }
+    });
+
+    console.log('Demo Component - ', event.identifier);
+
   }
+  
 
   Openview(view) {
     this.isLoading = true;
+
     if (view == 'list') {
       this.tab = 'list';
     } else if (view == 'detail') {
@@ -121,13 +144,17 @@ export class DemoComponent implements OnInit {
      this.router.navigate(['/calender']);
 
     
-  }
-    
-    else {
-      this.tab = 'form';
+  } else
+    {
+      // this.tab = 'form';
+      this.router.navigate(['/form'], {
+        queryParams: {
+          // identifier: event.identifier
+        }
+      });
     }
-    this.isLoading = false;
 
+    this.isLoading = false;
   }
 
 

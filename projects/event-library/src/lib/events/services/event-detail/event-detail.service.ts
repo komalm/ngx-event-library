@@ -20,7 +20,14 @@ export class EventDetailService {
   
   getEvent() {
     const req = {
+
       url: this.userConfigService.getConfigUrl().eventDetailApi
+
+     
+
+      // will remove commnet latter onces will get final api
+      // url: this.userConfigService.getConfigUrl().detail + identifier
+
     };
     return this.dataService.get(req);
   }

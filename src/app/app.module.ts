@@ -17,6 +17,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DemoComponent } from './demo/demo.component';
+
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
@@ -30,6 +31,9 @@ import { CalenderComponent } from './calender/calender.component';
 
 
 
+import { EventDetailComponent } from './event-detail/event-detail.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +42,11 @@ import { CalenderComponent } from './calender/calender.component';
     UserDetailComponent,
     UserFomComponent,
     DemoComponent,
+
     CalenderComponent
+
+    EventDetailComponent
+
   ],
   imports: [
     BrowserModule,
