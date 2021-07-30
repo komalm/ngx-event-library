@@ -35,7 +35,7 @@ export class EventDetailComponent implements OnInit {
 
     if (this.queryParams.identifier) {
      
-      this.eventDetailService.getEvent(this.queryParams.identifier).subscribe((data: any) => {
+      this.eventDetailService.getEvent().subscribe((data: any) => {
         this.eventDetailItem = data.result.event;
       },
         (err: any) => {
