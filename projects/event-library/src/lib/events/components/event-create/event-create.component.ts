@@ -48,6 +48,7 @@ export class EventCreateComponent implements OnInit {
   flag: boolean = true;
   tempEventType = null;
   tempVisibility;
+  eventCalender:any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventCreateService: EventCreateService,
@@ -80,6 +81,7 @@ export class EventCreateComponent implements OnInit {
       });
 
       this.eventDetailService.getEvent(this.queryParams.identifier).subscribe((data: any) => {
+        
         this.queryParams = data.result.event;
         setTimeout(() => 
         this.initializeFormFields(), 500);
@@ -89,18 +91,13 @@ export class EventCreateComponent implements OnInit {
         });
     }
 
-    
-
     if (!this.queryParams.identifier) {
       this.prepareFormConfiguration();
     }
 
-    
-
     let group = {}
 
     // this.initialFormFieldProperties = _.cloneDeep(this.formFieldProperties);
-    // 
   }
 
   prepareFormConfiguration(){

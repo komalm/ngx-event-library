@@ -4,6 +4,7 @@
     <a type="button" class=" ripple w-20 ml-16" (click)="Openview('form')">Create
         Event</a>
     <a type="button" class=" ripple w-20 ml-16" (click)="Openview('enrollUsersList')">Enrolled users list</a>
+    <a type="button" class=" ripple w-20 ml-16" (click)="Openview('calender')">Calender</a>
     <hr />
 </div>
 
@@ -24,14 +25,14 @@
 </div>
 
 <div *ngIf="tab == 'form'">
-    <sb-event-create *ngIf="!isDetail" [formFieldProperties]="formFieldProperties" [userId]="userId"
-        (closeSaveForm)="cancel($event)" (navAfterSave)="navAfterSave($event);"></sb-event-create>
+    <sb-event-create *ngIf="!isDetail" [formFieldProperties]="formFieldProperties" [userId]="userId" (closeSaveForm)="cancel($event)" (navAfterSave)="navAfterSave($event);"></sb-event-create>
 </div>
 
 <div *ngIf="tab == 'enrollUsersList'">
     <sb-enroll-event-users></sb-enroll-event-users>
     <!-- <sb-enroll-event-users [enrollEventDetails]="enrollUsers"></sb-enroll-event-users> -->
 </div>
-
-
-
+<div *ngIf="tab == 'calender'">
+    <app-calender></app-calender>
+    <br /><br /><br />
+</div>

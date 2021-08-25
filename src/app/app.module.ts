@@ -17,8 +17,20 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DemoComponent } from './demo/demo.component';
+
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
+
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalenderComponent } from './calender/calender.component';
+
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EnrollUsersComponent } from './enroll-users/enroll-users.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +41,8 @@ import { EnrollUsersComponent } from './enroll-users/enroll-users.component';
     UserFomComponent,
     DemoComponent,
     EventDetailComponent,
-    EnrollUsersComponent
+    EnrollUsersComponent,
+    CalenderComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +56,12 @@ import { EnrollUsersComponent } from './enroll-users/enroll-users.component';
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

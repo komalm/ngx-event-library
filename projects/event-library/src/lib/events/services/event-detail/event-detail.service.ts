@@ -17,26 +17,19 @@ export class EventDetailService {
   /**
    * For get event detail 
    */
+  
   getEvent(identifier) {
     const req = {
-      // url: this.userConfigService.getConfigUrl().detail
-
-      // will remove commnet latter onces will get final api
       url: this.userConfigService.getConfigUrl().detail + identifier
     };
 
     return this.dataService.get(req);
   }
 
-
   /**
    * For enroll/unenroll user
    */
   enrollUser(cId, uId) {
-    //param : cid and uid
-    //let apiUrl = '' + this.eventLibraryService.userID;
-    //return this.http.get<any>(apiUrl);
-
     const requestBody = {
       request: {
         "courseId": cId,
