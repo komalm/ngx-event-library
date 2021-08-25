@@ -17,10 +17,19 @@ export class EventService {
   /**
    * To user enrolled event list
    */
-  getEnrollEvents(courseId, userId) {
+  getEnrollEvents(eventId, userId) {
+
+    const requestBody = {
+      request: {
+        "courseId": eventId,
+        "userId": userId,
+        "fixedBatchId": "event_batch_id"
+      }
+    };
 
     const req = {
-      url: this.userConfigService.getConfigUrl().enrollListApi
+      url: this.userConfigService.getConfigUrl().enrollListApi,
+      data: requestBody
     };
 
     return this.dataService.get(req);

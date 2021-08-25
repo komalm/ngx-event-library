@@ -13,10 +13,13 @@ import { EventDetailService } from './../../../projects/event-library/src/lib/ev
 export class DemoComponent implements OnInit {
   eventList : any;
   eventItem: any;
+  enrollUsers: any;
   tab :string= "list";
   userId: any = "1001";
   formFieldProperties: any;
   isLoading: boolean =  true;
+  eventIdentifier = "do_11322166143296307218"
+  enrollData: any;
 
   p: number = 1;
   collection: any[];  
@@ -25,21 +28,31 @@ export class DemoComponent implements OnInit {
     private eventListService:EventListService,
     private eventCreateService: EventCreateService,
     private eventDetailService: EventDetailService,
+    
     private router: Router,
   ) { }
 
   ngOnInit() {
     this.showEventListPage();
     this.showEventCreatePage();
+    // this.getEnrollEventUsersList();
 
   }
+
+  // getEnrollEventUsersList(){
+  //   this.eventService.getEnrollEvents(this.eventIdentifier, '').subscribe((data) => {
+  //     this.enrollData = data.result.events;
+
+  //     console.log('getEnrollEventUsersList ::', this.enrollData);
+  //   });
+  // }
 
   /**
    * For get List of events
    */ 
   showEventListPage(){
     this.eventListService.getEventList().subscribe((data:any)=>{
-       console.log("data = ", data.result.content);
+      //  console.log("showEventListPage ::", data.result.content);
       this.eventList = data.result.content;
       this.isLoading = false;
 
@@ -58,7 +71,6 @@ export class DemoComponent implements OnInit {
 
     console.log('Demo Component - ', event.identifier);
   }
-  
 
   Openview(view)
   {
@@ -71,6 +83,15 @@ export class DemoComponent implements OnInit {
     else if(view == 'detail')
     {
       this.tab = 'detail';
+    }
+    else if (view == 'enrollUsersList')
+    {
+      // this.tab = 'enrollUsersList';
+      this.router.navigate(['/enroll-users'], {
+        queryParams: {
+          identifier: this.eventIdentifier
+        }
+      });
     }
     else
     {
@@ -91,12 +112,12 @@ export class DemoComponent implements OnInit {
       this.formFieldProperties = data.result['form'].data.fields;
       this.isLoading = false;
 
-      console.log(data.result['form'].data.fields);
+      // console.log(data.result['form'].data.fields);
     })
   }
   
   cancel(){
-    //this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
 
   navAfterSave(res){
@@ -107,7 +128,7 @@ export class DemoComponent implements OnInit {
       this.isLoading = false;
 
 
-      console.log(this.eventItem);
+      // console.log(this.eventItem);
     },
       (err: any) => {
         console.log('err = ', err);

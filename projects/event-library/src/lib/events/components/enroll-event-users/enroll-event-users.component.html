@@ -1,0 +1,47 @@
+<div class="d-flex flex-jc-flex-end">
+    <button (click)="goBack()" class="sb-btn sb-btn-normal sb-btn-gray ripple my-16" style="margin-right: 13px;">
+        Back
+    </button>
+    <span *ngIf="showDownloadCodeBtn && enrollEventDetails?.length > 0" >
+        <button class="sb-btn sb-btn-normal sb-btn-secondary sb-btn-download my-16" (click)=getEnrollDataCsv();>
+            Download CSV
+        </button>
+    </span>
+</div> 
+
+<div class="table-responsive" *ngIf="enrollEventDetails?.length > 0">
+     <table class="sb-table sb-table-sortable sb-table-blue-strip">
+        <thead>
+            <tr class="sb-table-head">
+                <th class="w-10">User Name</th>
+                <th class="w-10">Email</th>
+                <th class="w-10">Enrollment date</th>
+                <th class="w-10">Attendance status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of enrollEventDetails | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index ">
+                <!-- <td>{{i + 1}}</td> -->
+                <td class="white-space-inherit">{{user.userFname}} {{user.userLname}}</td>
+                <td class="white-space-inherit">{{user.userEmail}}</td>
+                <td class="white-space-inherit">{{user.enrolledDate | date: 'dd-MM-yyyy'}}</td>
+                <td class="white-space-inherit ml-auto mr-15 p-10 mt-8">
+                    <span class="sb-label-status sb-label-status-success" *ngIf="user?.userAttendantStatus == 'Present'">
+                            <span class="sb-label-status-indicator sb-label-status-indicator-success">
+                            </span>
+                            {{user.userAttendantStatus}}
+                    </span>
+                    <span class="sb-label-status sb-label-status-error" *ngIf="user?.userAttendantStatus != 'Present'">
+                            <span class="sb-label-status-indicator sb-label-status-indicator-error">
+                            </span>
+                            {{user.userAttendantStatus}}
+                    </span>
+                </td>
+            </tr>         
+        </tbody>
+    </table>
+    <div class="d-flex my-24 flex-jc-flex-end">
+        <pagination-controls (pageChange)="p = $event" *ngIf="enrollEventDetails">
+        </pagination-controls>
+    </div>
+</div>

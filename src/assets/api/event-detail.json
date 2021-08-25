@@ -23,7 +23,8 @@
                 "Student"
             ],
             "code": "do_11322166143296307218",
-            "visibility": "Default",
+            "visibility": "Parent",
+            "visibility-parent": "Student-Class A",
             "onlineProvider": "Zoom",
             "onlineProviderData": "https://meet.google.com/nzx-xauv-syq",
             "language": [
@@ -33,6 +34,21 @@
             "languageCode": [
                 "en"
             ],
+            "notification":"1 Hr Before",
+            "board":"State (Tamil Nadu)",
+            "gradeLevel":"Class 1",
+            "medium":"English",
+            "class":[
+                "Class 1",
+                "Class 2"
+            ],
+            "category":[
+                "Uncategories"  
+            ],
+            "recurring":"Yes",
+            "typeOfRecurring": "Custom",
+            "repeatEveryRecurring":"Day",
+            "countRepeatEveryRecurring":"2",
             "createdOn": "2021-02-22T16:43:10.626+0530",
             "version": 2,
             "objectType": "Event",

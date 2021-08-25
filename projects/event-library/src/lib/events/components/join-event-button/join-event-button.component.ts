@@ -33,11 +33,11 @@ export class JoinEventComponent implements OnInit {
     setTimeout(() => {
       this.isEnrollEvent();
 
-    }, 1000);
+    }, 5000);
 
     setInterval(() => {
       this.joinEvent();
-    }, 1000);
+    }, 2000);
   }
 
 
@@ -72,13 +72,12 @@ export class JoinEventComponent implements OnInit {
     */
   isEnrollEvent() {
     this.eventService.getEnrollEvents(this.eventDetailItem.identifier, this.userData).subscribe((data) => {
-      this.items = data.result.courses;
+      this.items = data.result.events;
 
       this.items.find((o, i) => {
         if (o.courseId === this.eventDetailItem.identifier) {
           this.isEnrolled = true;
         }
-
       });
     });
   }

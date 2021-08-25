@@ -4,11 +4,22 @@
     <ng-container *ngIf="isNew;then New; else Edit">
     </ng-container>
     <ng-template #New>
-        <sb-dynamic-form *ngIf="formFieldProperties" class="label-1" [config]="formFieldProperties" (valueChanges)="valueChanges($event)">
-        </sb-dynamic-form>
+        <div *ngIf="formFieldProperties != undefined && formFieldProperties?.length > 0" > 
+            <sb-dynamic-form 
+                class="label-1" 
+                [config]="formFieldProperties" 
+                (initialize)="output($event)"
+                (statusChanges)="onStatusChanges($event)"
+                (valueChanges)="valueChanges($event)">
+             </sb-dynamic-form>
+        </div>
     </ng-template>
     <ng-template #Edit>
-        <sb-dynamic-form *ngIf="formFieldData" class="label-1" [config]="formFieldData" (valueChanges)="valueChanges($event)">
+        <sb-dynamic-form 
+            *ngIf="formFieldData" 
+            class="label-1" 
+            [config]="formFieldData" 
+            (valueChanges)="valueChanges($event)">
         </sb-dynamic-form>
     </ng-template>
 
@@ -26,7 +37,7 @@
     <form class="ui form" [formGroup]="customFields">
         <div class="form-group">
             <div class="d-flex flex-jc-space-between">
-                <div class="mb-12 w-100">
+                <!-- <div class="mb-12 w-100">
                     <label class="mb-5 fs-0-785">{{'startdatetime' | translate}} ({{timezoneshort}})
                     </label>
                     <div class="field">
@@ -34,17 +45,17 @@
                         <input class="fsmall sb-textbox text-uppercase py-8 px-16 w-17-5" formControlName="startTime" type="time" id="meeting-time" name="meeting-time">
 
                     </div>
-                </div>
-                <div class="mb-12 w-100 ml-16">
+                </div> -->
+                <!-- <div class="mb-12 w-100 ml-16">
                     <label class="mb-5 fs-0-785">{{'enddatetime' | translate}} ({{timezoneshort}})
                     </label>
                     <div class="field">
                         <input class="fsmall sb-textbox text-uppercase py-8 w-75 px-16" formControlName="endDate" type="date" id="meeting-time" name="meeting-time" min="{{todayDate}}">
                         <input class="fsmall sb-textbox text-uppercase py-8 px-16 w-17-5" formControlName="endTime" type="time" id="meeting-time" name="meeting-time" min={{startTime}}>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="d-flex flex-jc-space-between">
+            <!-- <div class="d-flex flex-jc-space-between">
                 <div class="mb-12 w-100">
                     <label class="mb-5 fs-0-785">{{'registrationStartDate' | translate}} ({{timezoneshort}})
                     </label>
@@ -61,7 +72,7 @@
                      
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </form>
 

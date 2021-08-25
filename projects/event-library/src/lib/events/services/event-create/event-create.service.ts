@@ -40,15 +40,13 @@ export class EventCreateService {
       data: requestBody,
       header: { 'Content-Type' : 'application/json'}
     };
-
+    // this.sbToastService.showIziToastMsg("New Event Created Successfully", 'success');
     return this.dataService.post(option);
     
     // .subscribe((data)=>{
       
     //   console.log({data});
     // });
-
-    this.sbToastService.showIziToastMsg("New Event Created Successfully", 'success');
   }
 
 

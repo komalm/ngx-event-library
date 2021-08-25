@@ -1,0 +1,12 @@
+<div class="m-20 my-30">
+    <a type="button" class="ripple w-16" (click)="Openview('list')">List
+        view</a>
+    <a type="button" class=" ripple w-20 ml-16" (click)="Openview('form')">Create
+        Event</a>
+    <a type="button" class=" ripple w-20 ml-16" (click)="Openview('enrollUsersList')">Enrolled users list</a>
+    <hr />
+</div>
+
+<sb-enroll-event-users [enrollEventDetails]="eventUserEnrollData"></sb-enroll-event-users>
+<!-- <sb-enroll-event-users [enrollEventDetails]="enrollUsers" [enrollUserList]="enrollUsers"></sb-enroll-event-users> -->
+

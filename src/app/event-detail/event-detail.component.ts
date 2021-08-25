@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 
 export class EventDetailComponent implements OnInit {
   eventItem: any;
-  userId: any = "1001";
+  userId: any = "999";
   isLoading: boolean =  true;
   queryParams:any;
 

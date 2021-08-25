@@ -14,7 +14,8 @@ import { NgxIziToastModule } from 'ngx-izitoast';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
+import { EnrollEventUsersComponent } from './components/enroll-event-users/enroll-event-users.component'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
     JoinEventComponent,
     AdvanceEventDetailComponent,
     CoverEventDetailComponent,
-    EventFilterComponent
+    EventFilterComponent,
+    EnrollEventUsersComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
     JoinEventComponent,
     AdvanceEventDetailComponent,
     CoverEventDetailComponent,
-    EventFilterComponent
+    EventFilterComponent,
+    EnrollEventUsersComponent
   ],
   providers: [ ]
 })

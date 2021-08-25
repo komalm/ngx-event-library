@@ -1,13 +1,19 @@
 <div class="">
     <div>
-        <p *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:300}} <a
-                *ngIf="eventDetailItem?.description.length > 300" (click)="truncateData(true)">{{'SeeMore' | translate}}
-
-            </a> </p>
-        <p *ngIf="isTruncate">{{eventDetailItem?.description}} <a (click)="truncateData(false)">{{'LessMore' |
-                translate}}</a> </p>
+        <span *ngIf="eventDetailItem?.description">
+            <p *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:300}} 
+                <a *ngIf="eventDetailItem?.description.length > 300" 
+                    (click)="truncateData(true)">
+                        {{'SeeMore' | translate}}
+                </a> 
+            </p>
+            <p *ngIf="isTruncate">{{eventDetailItem?.description}} 
+                <a (click)="truncateData(false)">
+                    {{'LessMore' | translate}}
+                </a> 
+            </p>
+        </span>
         
-
         <div>
             <table class="w-100 fs-0-92" *ngIf="eventDetailItem?.eventType != 'Online'">
                 <tr *ngIf="eventDetailItem?.venue">

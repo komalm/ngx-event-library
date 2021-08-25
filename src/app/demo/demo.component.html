@@ -3,7 +3,7 @@
         view</a>
     <a type="button" class=" ripple w-20 ml-16" (click)="Openview('form')">Create
         Event</a>
-
+    <a type="button" class=" ripple w-20 ml-16" (click)="Openview('enrollUsersList')">Enrolled users list</a>
     <hr />
 </div>
 
@@ -28,6 +28,10 @@
         (closeSaveForm)="cancel($event)" (navAfterSave)="navAfterSave($event);"></sb-event-create>
 </div>
 
+<div *ngIf="tab == 'enrollUsersList'">
+    <sb-enroll-event-users></sb-enroll-event-users>
+    <!-- <sb-enroll-event-users [enrollEventDetails]="enrollUsers"></sb-enroll-event-users> -->
+</div>
 
 
 

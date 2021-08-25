@@ -21,6 +21,7 @@ export class CoverEventDetailComponent implements OnInit {
   isEnrolled: boolean = false;
   items: any;
   timezoneshort : string;
+
   constructor(
     private router:Router,
     private eventService: EventService,
@@ -35,13 +36,13 @@ export class CoverEventDetailComponent implements OnInit {
     //   {
     //     console.log({response});
     //   });
-
+console.log('api this.userData ::', this.userData, " == ", this.eventDetailItem);
     setTimeout(() => {
      this.isOwner = (this.eventDetailItem.owner == this.userData) ? true : false;
 
       this.timezoneshort = this.timezoneCal.timeZoneAbbreviated();
       this.setDateTimeOnCover();
-    }, 1000);
+    }, 2000);
   }
 
   /**
